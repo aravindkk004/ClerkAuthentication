@@ -54,7 +54,7 @@ export async function POST(req) {
     };
     console.log("from clerk webhooks", user);
     const newUser = await createUser(user);
-
+    console.log("new user is",newUser);
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
