@@ -144,17 +144,8 @@ export async function POST(req) {
     };
 
     console.log("from Clerk webhooks", user);
-
-    // Acknowledge Clerk immediately
-    return new Response(
-      JSON.stringify({
-        message: "User added successfully",
-      }),
-      { status: 200 }
-    );
-
-    // Offload user creation to a background task
     try {
+      console.log("before new user");
       const newUser = await createUser(user);
       console.log("new user is", newUser);
 
@@ -171,6 +162,16 @@ export async function POST(req) {
       );
       // Log error and continue, but don't affect the response to Clerk
     }
+    // Acknowledge Clerk immediately
+    return new Response(
+      JSON.stringify({
+        message: "User added successfully",
+      }),
+      { status: 200 }
+    );
+
+    // Offload user creation to a background task
+    
   }
 
   return new Response("", { status: 200 });
