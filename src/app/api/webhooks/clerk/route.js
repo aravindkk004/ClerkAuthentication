@@ -1,7 +1,6 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { createUser } from "@/libs/actions/user.action";
-import { clerkClient } from "@clerk/clerk-sdk-node"; // Ensure you're importing this correctly
 
 export async function POST(req) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
