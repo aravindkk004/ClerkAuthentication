@@ -86,9 +86,6 @@
 //   return new Response("", { status: 200 });
 // }
 
-
-
-
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { createUser } from "@/libs/actions/user.action";
@@ -151,10 +148,12 @@ export async function POST(req) {
       console.log("new user is", newUser);
 
       if (newUser) {
-        const updateRes = await clerkClient.users.updateUserMetadata(id, {
-          publicMetadata: { userId: newUser._id },
+        await clerkClient.users.updateUserMetadata(id, {
+          publicMetadata: {
+            userId: newUser._id,
+          },
         });
-        console.log("Clerk user metadata updated:", updateRes);
+        toast.success("Signup successfully");
       }
     } catch (error) {
       console.error(
@@ -172,7 +171,6 @@ export async function POST(req) {
     );
 
     // Offload user creation to a background task
-    
   }
 
   return new Response("", { status: 200 });
