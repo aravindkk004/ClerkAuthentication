@@ -148,12 +148,12 @@ export async function POST(req) {
       console.log("new user is", newUser);
 
       if (newUser) {
-        await clerkClient.users.updateUserMetadata(id, {
+        await clerkClient.users.updateUser(id, {
           publicMetadata: {
             userId: newUser._id,
           },
         });
-        toast.success("Signup successfully");
+        console.log("Metadata updated successfully");
       }
     } catch (error) {
       console.error(
