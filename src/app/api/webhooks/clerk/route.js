@@ -147,14 +147,14 @@ export async function POST(req) {
       const newUser = await createUser(user);
       console.log("new user is", newUser);
 
-      if (newUser) {
-        await clerkClient.users.updateUser(id, {
-          publicMetadata: {
-            userId: newUser._id,
-          },
-        });
-        console.log("Metadata updated successfully");
-      }
+      // if (newUser) {
+      //   await clerkClient.users.updateUser(id, {
+      //     publicMetadata: {
+      //       userId: newUser._id,
+      //     },
+      //   });
+      //   console.log("Metadata updated successfully");
+      // }
     } catch (error) {
       console.error(
         "Error during user creation or Clerk metadata update:",
